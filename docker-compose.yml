@@ -1,0 +1,28 @@
+services:
+    app:
+      build: .
+      ports:
+        - "8090:8090"
+      networks:
+        - s-network
+      
+    
+    postgres:
+      image: postgres
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 
+        POSTGRES_DB: 
+      ports:
+        - "5433:5432"
+      networks:
+        - s-network
+      volumes:
+        - postgres-s-data:/var/lib/postgresql
+
+networks:
+  s-network:
+    driver: bridge
+
+volumes:
+  postgres-s-data:

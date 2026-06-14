@@ -11,13 +11,19 @@ public class StudentController {
 
     @Autowired
     StudentRepo repo;
-    
+
     @RequestMapping("/getStudents")
     public List<Student> getStuds(){
-        return List.of(
-                new Student(1, "Ranga", 21),
-                new Student(2, "Manga", 22),
-                new Student(3, "Banga", 24)
-        );
+
+        return repo.findAll();
+    }
+
+    @RequestMapping("/addStudent")
+    public void addStudent(){
+        Student s = new Student();
+        s.setName("Raj");
+        s.setAge(32);
+
+        repo.save(s);
     }
 }
